@@ -1,5 +1,7 @@
-# esse projeto tem objetivo criar uma ferramenta pessoal de uso próprio
+# esse projeto tem objetivo criar uma ferramenta pessoal
 import qrcode
+
+
 from PIL import Image
 import os
 import re
@@ -13,10 +15,10 @@ class createQrCode():
         return link, name_treted
     
 
-    def criarQrcode(link):
+    def criarQrcode(link, name):
         img = qrcode.make(link)
-        
-        createQrCode.salvarQrCode(img)
+        name = name
+        createQrCode.salvarQrCode(img, name)
 
     def tratamentoNome(name):
         name = re.sub(r"\s", "_", name)
@@ -29,13 +31,13 @@ class createQrCode():
     def salvarQrCode(img, name):
         output_path = '_qrcodes'
 
-        if not os.path.exists(output_path, name):
+        if not os.path.exists(output_path):
             os.makedirs(output_path)
             print('Diretório criado com sucesso!')
 
         
 
-        img.save(f'{name}.png')
+        img.save(f'./{output_path}/{name}.png')
 
 
         return name
